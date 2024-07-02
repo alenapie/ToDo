@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Box } from "@mui/material";
+import theme from "./components/theme.tsx"; // путь к вашему файлу темы
+import Test1 from "./components/Test1.tsx";
+import Header from "./components/Header.tsx";
+import Main from "./components/Main.tsx";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ThemeProvider theme={theme}>
+        {/* <Box
+          sx={{
+            background: "linear-gradient(to right, #BE80E4, #6DFBFF)", // градиент от красного к синему
+            minHeight: "100vh",
+          }}
+        > */}
+        <CssBaseline />
+        <Header />
+        <Main />
+        <Test1 />
+        {/* </Box> */}
+      </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
