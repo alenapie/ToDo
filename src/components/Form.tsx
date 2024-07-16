@@ -1,16 +1,24 @@
 import { Button, TextField, Grid } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 type Props = {
-  handleAddTodo: (text: string) => void;
+  onAddTodo: (text: string) => void;
 };
 
-export const Form: FC<Props> = ({ handleAddTodo }) => {
+export const Form: FC<Props> = ({ onAddTodo }) => {
   const [text, setText] = useState("");
+
+  const handleAddTodo = () => {
+    const result = text.trim();
+    if (result) {
+      onAddTodo(text);
+    }
+    setText("");
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter") {
-      handleAddTodo(text);
+      handleAddTodo();
     }
   };
 
@@ -39,7 +47,7 @@ export const Form: FC<Props> = ({ handleAddTodo }) => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => handleAddTodo(text)}
+                onClick={handleAddTodo}
               >
                 Добавить
               </Button>

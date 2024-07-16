@@ -1,6 +1,7 @@
 import { ListItem, ListItemText, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FC } from "react";
+import { TTodo } from "../types";
 
 type Props = {
   handleDelete: () => void;

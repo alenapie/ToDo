@@ -1,21 +1,15 @@
 import Header from "./components/Header.tsx";
 import { Form } from "./components/Form.tsx";
 import { TodoList } from "./components/TodoList.tsx";
-import { useState } from "react";
+import { useTodos } from "./hooks/useTodos";
 
 const App = () => {
-  const [todos, setTodos] = useState<string[]>([]);
-
-  const handleAddTodo = (text: string) => setTodos((prev) => [...prev, text]);
-  const handleDeleteTodo = (index: number) => {
-    const newState = todos.filter((_, i) => i !== index);
-    setTodos(newState);
-  };
+  const { todos, handleAddTodo, handleDeleteTodo } = useTodos();
 
   return (
     <>
       <Header />
-      <Form handleAddTodo={handleAddTodo} />
+      <Form onAddTodo={handleAddTodo} />
       <TodoList todos={todos} onDelete={handleDeleteTodo} />
     </>
   );

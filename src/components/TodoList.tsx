@@ -1,10 +1,11 @@
 import { List, Grid } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Todo } from "./Todo";
+import { TTodo } from "../types";
 
 type Props = {
-  todos: string[];
-  onDelete: (index: number) => void;
+  todos: TTodo[];
+  onDelete: (id: string) => Promise<void>;
 };
 
 export const TodoList: FC<Props> = ({ todos, onDelete }) => {
@@ -15,7 +16,6 @@ export const TodoList: FC<Props> = ({ todos, onDelete }) => {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      mt={20}
     >
       <Grid item>
         <List
@@ -25,11 +25,11 @@ export const TodoList: FC<Props> = ({ todos, onDelete }) => {
             bgcolor: "background.paper",
           }}
         >
-          {todos.map((item, index) => (
+          {todos.map(({ id, description }) => (
             <Todo
-              key={index}
-              text={item}
-              handleDelete={() => onDelete(index)}
+              key={id}
+              text={description}
+              handleDelete={() => onDelete(id)}
             />
           ))}
         </List>
