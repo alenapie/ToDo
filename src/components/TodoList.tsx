@@ -1,5 +1,5 @@
 import { List, Grid } from "@mui/material";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Todo } from "./Todo";
 import { TTodo } from "../types";
 

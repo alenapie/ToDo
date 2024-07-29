@@ -39,7 +39,7 @@ export const Form: FC<Props> = ({ onAddTodo }) => {
           value={text}
           onChange={({ target }) => setText(target.value)}
           sx={{
-            width: "100%", // Расширение ширины поля ввода на всю доступную ширину
+            width: "100%",
           }}
           onKeyDown={handleKeyPress}
           InputProps={{
