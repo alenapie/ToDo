@@ -1,19 +1,23 @@
 import { Button, TextField, Grid } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../features/todoSlice";
+import { AppDispatch } from "../store";
 
-type Props = {
-  onAddTodo: (text: string) => void;
-};
+// type Props = {
+//   onAddTodo: (text: string) => void;
+// };
 
-export const Form: FC<Props> = ({ onAddTodo }) => {
+export const Form: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [text, setText] = useState("");
 
   const handleAddTodo = () => {
     const result = text.trim();
     if (result) {
-      onAddTodo(text);
+      dispatch(addTodo(result));
+      setText("");
     }
-    setText("");
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {

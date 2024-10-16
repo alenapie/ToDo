@@ -1,13 +1,16 @@
 import { ListItem, ListItemText, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FC } from "react";
+import { AppDispatch } from "../store";
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../features/todoSlice";
 
 type Props = {
-  handleDelete: () => void;
   text: string;
+  handleDelete: () => void;
 };
 
-export const Todo: FC<Props> = ({ handleDelete, text }) => {
+export const Todo: FC<Props> = ({ text, handleDelete }) => {
   return (
     <ListItem>
       <ListItemText primary={text} />
